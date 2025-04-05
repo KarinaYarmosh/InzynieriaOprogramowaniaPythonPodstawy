@@ -1,39 +1,20 @@
-"""
-Zadanie 2 - Nawiasy
-
-Opis zadania:
-- Zweryfikuj, czy podany ciąg znaków zawiera poprawne nawiasy.
-- Każdemu otwartemu nawiasowi '(' powinien odpowiadać nawias zamykający ')'.
-- Jeśli nawiasy się zgadzają, funkcja ma zwrócić True, w przeciwnym wypadku False.
-- Rozpatrujemy wyłącznie nawiasy okrągłe.
-
-Przykładowe wejścia (True):
-    "( if ( zero ? x ) max (/ 1 x ))"
-    "I told ( that its not ( yet ) done ). (42)"
-Przykładowe wejścia (False):
-    ":-)"
-    "Czesc (o kurcze, chyba niechcacy zamkne ten nawias dwa razy))"
-    "())(("
-
-Wymagania:
-- Implementacja funkcji `check_parentheses(s: str) -> bool`.
-- Użycie stosu do weryfikacji poprawności nawiasów.
-"""
-
 def check_parentheses(s: str) -> bool:
-    """
-    Sprawdza, czy w ciągu znaków 's' nawiasy okrągłe są poprawnie sparowane.
-
-    Args:
-        s (str): Ciąg znaków do analizy.
-
-    Returns:
-        bool: True jeśli nawiasy są poprawne, False w przeciwnym wypadku.
-    """
     ### TUTAJ PODAJ ROZWIĄZANIE ZADANIA
-
-    ### return False - powinno być zmienione i zwrócić prawdziwy wynik (zgodny z oczekiwaniami)
-    return False
+    otw_nawias=0
+    zam_nawias=0
+    print(s)
+    for i in s:
+        if i == "(":
+            otw_nawias+=1
+        elif i == ")":
+            zam_nawias+=1
+        else:
+            continue
+    if otw_nawias==zam_nawias:
+        print("nawiasy są poprawnie sparowane")
+        return True
+    else:
+        return False
 
 # Przykładowe wywołanie:
 if __name__ == "__main__":
