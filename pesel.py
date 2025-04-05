@@ -1,38 +1,38 @@
-"""
-Zadanie 1 - Weryfikacja numeru PESEL
-
-Opis zadania:
-- Użytkownik wprowadza numer PESEL (ciąg 11 znaków, zakładamy, że długość jest poprawna).
-- Program sprawdza, czy ostatnia cyfra (cyfra kontrolna) jest prawidłowa.
-- Reguła: znaleźć w internecie.
-- Jeśli ostatnia cyfra zgadza się z obliczoną wartością, funkcja ma zwrócić 1, w przeciwnym wypadku 0.
-
-Przykładowe wejście:
-    "97082123152"
-Przykładowe wyjście:
-    0
-
-Wymagania:
-- Implementacja funkcji `verify_pesel(pesel: str) -> int`.
-- Użycie algorytmu weryfikacji opisanej powyżej.
-"""
-
+import math
 
 def verify_pesel(pesel: str) -> int:
-    """
-    Weryfikuje numer PESEL.
-
-    Args:
-        pesel (str): Numer PESEL w postaci ciągu 11 znaków.
-
-    Returns:
+    """:
         int: 1 jeśli numer jest poprawny, 0 jeśli nie.
     """
     ### TUTAJ PODAJ ROZWIĄZANIE ZADANIA
-
-    ### return 0 - powinno być zmienione i zwrócić prawdziwy wynik (zgodny z oczekiwaniami)
+    print(pesel)
+    if len(pesel)==11:
+        print("pesel jest odpowiedzniej długości")
+        print("sprawdzenie wartości kontrolnej pesel")
+        sum=0
+        loop=0
+        mylist=[1,3,7,9,1,3,7,9,1,3]
+        for i in pesel:
+            if loop<10:
+                middle_num=int(i)*mylist[loop]
+                if middle_num>9:
+                    middle_num=middle_num%10
+                sum+=middle_num
+                loop+=1
+            else:
+                break
+        result = sum%10
+        print("liczba kontrolna", result)
+        print("ostatnia cyfra pesel", pesel[10])
+        if pesel[10]==str(result):
+            print("pesel poprawny")
+            return 1
+        else:
+            print("pesel błędny")
+            return 0
+    else:
+        print("za krótki pesel")
     return 0
-
 
 # Przykładowe wywołanie:
 if __name__ == "__main__":
