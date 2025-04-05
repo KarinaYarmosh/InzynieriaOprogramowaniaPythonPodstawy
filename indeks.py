@@ -48,9 +48,35 @@ def index_documents(documents: list[str], queries: list[str]) -> list[list[int]]
         list[list[int]]: Lista wyników dla kolejnych zapytań.
     """
     ### TUTAJ PODAJ ROZWIĄZANIE ZADANIA
-
+    print("Dokumenty:", documents)
+    print("Zapytania:", queries)
+    if not documents or not queries:
+        return []
+    documents_splited = []
+    for document in documents:
+        # Usunięcie interpunkcji i podział na wyrazy
+        document = document.lower()
+        document = ''.join(char for char in document if char.isalnum() or char.isspace())
+        documents_splited.append(document.split())
+    print("Dokumenty po podziale:", documents_splited)
+    all_res = set()
+    for query in queries:
+        # Usunięcie interpunkcji i podział na wyrazy
+        query = query.lower()
+        query = ''.join(char for char in query if char.isalnum() or char.isspace())
+        query = query.split()
+        print("Zapytanie po podziale:", query)
+        results = []
+        for i, document in enumerate(documents_splited):
+            count = document.count(query[0])
+            if count > 0:
+                results.append((i, count))
+        # Sortowanie wyników według częstości i numeru dokumentu
+        results.sort(key=lambda x: (-x[1], x[0]))
+        all_res.add(tuple(results))
+        print("Wyniki dla zapytania:", results)
     ### return [[]] - powinno być zmienione i zwrócić prawdziwy wynik (zgodny z oczekiwaniami)
-    return [[]]
+    return all_res # Lista wyników dla każdego zapytania
 
 
 # Przykładowe wywołanie:
